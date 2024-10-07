@@ -288,13 +288,13 @@ namespace Opc.Ua
             // compare each.
             for (int ii = 0; ii < fields1.Count; ii++)
             {
-                var comparison = StringComparison.Ordinal;
+                var comparer = StringComparer.Ordinal;
                 if (fields1[ii].StartsWith("DC=", StringComparison.OrdinalIgnoreCase))
                 {
                     // DC hostnames may have different case
-                    comparison = StringComparison.OrdinalIgnoreCase;
+                    comparer = StringComparer.OrdinalIgnoreCase;
                 }
-                if (!String.Equals(fields1[ii], fields2[ii], comparison))
+                if (!fields2.Contains(fields1[ii], comparer))
                 {
                     return false;
                 }
